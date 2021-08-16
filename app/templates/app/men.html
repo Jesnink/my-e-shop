@@ -1,0 +1,53 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Buy Now{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+ <div class="row">
+  <div class="col-sm-3">
+  <h3>Filter</h3>
+  
+   <div class="list-group">
+    <a href="{% url 'men' %}" class="list-group-item list-group-item-action" area-current="true">All</a>
+    <a href="{% url 'mendata' 'MT' %}" class="list-group-item list-group-item-action">Top Wear</a>
+    <a href="{% url 'mendata' 'MB' %}" class="list-group-item list-group-item-action">Bottom Wear</a>
+  
+   </div>
+   <br>
+   <p class="text-primary">Brand<p>
+    <div class="list-group">
+    <a href="{% url 'men' %}" class="list-group-item list-group-item-action" area-current="true">All</a>
+    <a href="{% url 'mendata' 'AllenSolly' %}" class="list-group-item list-group-item-action">Allen Solly</a>
+    <a href="{% url 'mendata' 'Adidas' %}" class="list-group-item list-group-item-action">Adidas</a>
+    <a href="{% url 'mendata' 'Tommy' %}" class="list-group-item list-group-item-action">Tommy</a>
+   
+   
+    
+   </div>
+  </div>
+  
+  <div class="col-sm-8">
+   
+   <div class="row">
+   
+   {% for item in men %}
+     <div class="col-md-4 text-center mb-5">
+        <a href="{% url 'product-detail' item.Id %}" class="btn">
+        <div class="item">
+        <img src="{{item.Product_image.url}}" height="300"/>
+        <div class="fw-bold">{{item.Title}}</div>
+         <div class="fw-bold">Rs. {{item.Discounted_Price}}
+         <small class="fw-light text-decoration-line-through">{{item.Selling_price}}</small>
+         </div>
+        </div>
+        </a>
+        </div>
+       
+    
+   {% endfor %}
+   
+   <div>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}
